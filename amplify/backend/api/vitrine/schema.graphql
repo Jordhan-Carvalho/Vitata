@@ -1,0 +1,87 @@
+type Comment @model {
+  id: ID!
+  content: String
+  product: Product @connection(name: "ProductComments")
+  createdAt: String
+}
+
+type Market @model @searchable {
+  id: ID!
+  name: String!
+  products: [Product]
+    @connection(name: "MarketProducts", sortField: "createdAt")
+  tags: [String]
+  owner: String!
+  createdAt: String
+}
+
+type Product
+  @model
+  @searchable
+  @auth(
+    rules: [
+      {
+        allow: owner
+        identityField: "sub"
+        operations: [create, update, delete]
+      }
+    ]
+  ) {
+  id: ID!
+  title: String!
+  condition: String!
+  description: String!
+  district: String
+  category: String
+  quantity: String
+  market: Market @connection(name: "MarketProducts")
+  file: S3Object!
+  price: Float!
+  shipped: Boolean!
+  user: User @connection(name: "UserProducts")
+  owner: String
+  comments: [Comment]
+    @connection(name: "ProductComments", sortField: "createdAt")
+  createdAt: String
+}
+
+type S3Object {
+  bucket: String!
+  region: String!
+  key: String!
+}
+
+type User
+  @model(
+    queries: { get: "getUser" }
+    mutations: { create: "registerUser", update: "updateUser" }
+    subscriptions: null
+  ) {
+  id: ID!
+  username: String!
+  email: String!
+  phone: String!
+  registered: Boolean
+  products: [Product] @connection(name: "UserProducts", sortField: "createdAt")
+  orders: [Order] @connection(name: "UserOrder", sortField: "createdAt")
+}
+
+type Order
+  @model(
+    queries: null
+    mutations: { create: "createOrder" }
+    subscriptions: null
+  ) {
+  id: ID!
+  product: Product @connection
+  user: User @connection(name: "UserOrder")
+  shippingAddress: ShippingAddress
+  createdAt: String
+}
+
+type ShippingAddress {
+  district: String!
+  street: String!
+  more_info: String!
+  number: String!
+}

@@ -9,6 +9,11 @@
             "UnauthRoleName": "vitrine-dev-20190805161720-unauthRole",
             "StackName": "vitrine-dev-20190805161720",
             "StackId": "arn:aws:cloudformation:us-east-1:007008111373:stack/vitrine-dev-20190805161720/a6130a20-b7b5-11e9-9d59-0a1fbafbd996"
+        },
+        "categories": {
+            "auth": {
+                "vitrineb196df6f": {}
+            }
         }
     }
 }

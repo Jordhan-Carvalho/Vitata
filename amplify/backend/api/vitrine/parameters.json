@@ -1,0 +1,10 @@
+{
+    "AppSyncApiName": "vitrine",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authvitrineb196df6f",
+            "Outputs.UserPoolId"
+        ]
+    }
+}

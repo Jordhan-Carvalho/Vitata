@@ -6,6 +6,12 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
+// Amplify config
+import Amplify from "aws-amplify";
+import awsmobile from "./aws-exports";
+
+Amplify.configure(awsmobile);
+
 ReactDOM.render(
   <BrowserRouter>
     <CssBaseline />
