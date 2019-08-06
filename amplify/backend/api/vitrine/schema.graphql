@@ -32,13 +32,12 @@ type Product
   condition: String!
   description: String!
   district: String
-  category: String
-  quantity: String
+  category: String!
+  quantity: String!
   market: Market @connection(name: "MarketProducts")
-  file: S3Object!
+  files: [S3Object]!
   price: Float!
-  shipped: Boolean!
-  user: User @connection(name: "UserProducts")
+  shipped: String!
   owner: String
   comments: [Comment]
     @connection(name: "ProductComments", sortField: "createdAt")
@@ -62,7 +61,6 @@ type User
   email: String!
   phone: String!
   registered: Boolean
-  products: [Product] @connection(name: "UserProducts", sortField: "createdAt")
   orders: [Order] @connection(name: "UserOrder", sortField: "createdAt")
 }
 

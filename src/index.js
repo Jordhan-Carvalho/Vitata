@@ -1,10 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
+import { Router } from "react-router-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import history from "./utils/history";
 
 // Amplify config
 import Amplify from "aws-amplify";
@@ -13,10 +14,10 @@ import awsmobile from "./aws-exports";
 Amplify.configure(awsmobile);
 
 ReactDOM.render(
-  <BrowserRouter>
+  <Router history={history}>
     <CssBaseline />
     <App />
-  </BrowserRouter>,
+  </Router>,
   document.getElementById("root")
 );
 

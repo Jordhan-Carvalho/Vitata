@@ -1,6 +1,6 @@
 {
     "identityPoolName": "vitrineb196df6f_identitypool_b196df6f",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "openIdLambdaRoleName": "vitrinb196df6f_openid_lambda_role",
     "resourceNameTruncated": "vitrinb196df6f",
     "userPoolName": "vitrineb196df6f_userpool_b196df6f",

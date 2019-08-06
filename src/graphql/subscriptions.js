@@ -20,20 +20,13 @@ export const onCreateComment = `subscription OnCreateComment {
         owner
         createdAt
       }
-      file {
+      files {
         bucket
         region
         key
       }
       price
       shipped
-      user {
-        id
-        username
-        email
-        phone
-        registered
-      }
       owner
       comments {
         nextToken
@@ -63,20 +56,13 @@ export const onUpdateComment = `subscription OnUpdateComment {
         owner
         createdAt
       }
-      file {
+      files {
         bucket
         region
         key
       }
       price
       shipped
-      user {
-        id
-        username
-        email
-        phone
-        registered
-      }
       owner
       comments {
         nextToken
@@ -106,20 +92,13 @@ export const onDeleteComment = `subscription OnDeleteComment {
         owner
         createdAt
       }
-      file {
+      files {
         bucket
         region
         key
       }
       price
       shipped
-      user {
-        id
-        username
-        email
-        phone
-        registered
-      }
       owner
       comments {
         nextToken
@@ -227,26 +206,13 @@ export const onCreateProduct = `subscription OnCreateProduct {
       owner
       createdAt
     }
-    file {
+    files {
       bucket
       region
       key
     }
     price
     shipped
-    user {
-      id
-      username
-      email
-      phone
-      registered
-      products {
-        nextToken
-      }
-      orders {
-        nextToken
-      }
-    }
     owner
     comments {
       items {
@@ -279,26 +245,13 @@ export const onUpdateProduct = `subscription OnUpdateProduct {
       owner
       createdAt
     }
-    file {
+    files {
       bucket
       region
       key
     }
     price
     shipped
-    user {
-      id
-      username
-      email
-      phone
-      registered
-      products {
-        nextToken
-      }
-      orders {
-        nextToken
-      }
-    }
     owner
     comments {
       items {
@@ -331,26 +284,13 @@ export const onDeleteProduct = `subscription OnDeleteProduct {
       owner
       createdAt
     }
-    file {
+    files {
       bucket
       region
       key
     }
     price
     shipped
-    user {
-      id
-      username
-      email
-      phone
-      registered
-      products {
-        nextToken
-      }
-      orders {
-        nextToken
-      }
-    }
     owner
     comments {
       items {

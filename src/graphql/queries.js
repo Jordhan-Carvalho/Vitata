@@ -20,20 +20,13 @@ export const getComment = `query GetComment($id: ID!) {
         owner
         createdAt
       }
-      file {
+      files {
         bucket
         region
         key
       }
       price
       shipped
-      user {
-        id
-        username
-        email
-        phone
-        registered
-      }
       owner
       comments {
         nextToken
@@ -137,26 +130,13 @@ export const getProduct = `query GetProduct($id: ID!) {
       owner
       createdAt
     }
-    file {
+    files {
       bucket
       region
       key
     }
     price
     shipped
-    user {
-      id
-      username
-      email
-      phone
-      registered
-      products {
-        nextToken
-      }
-      orders {
-        nextToken
-      }
-    }
     owner
     comments {
       items {
@@ -191,20 +171,13 @@ export const listProducts = `query ListProducts(
         owner
         createdAt
       }
-      file {
+      files {
         bucket
         region
         key
       }
       price
       shipped
-      user {
-        id
-        username
-        email
-        phone
-        registered
-      }
       owner
       comments {
         nextToken
@@ -222,22 +195,6 @@ export const getUser = `query GetUser($id: ID!) {
     email
     phone
     registered
-    products {
-      items {
-        id
-        title
-        condition
-        description
-        district
-        category
-        quantity
-        price
-        shipped
-        owner
-        createdAt
-      }
-      nextToken
-    }
     orders {
       items {
         id
@@ -301,20 +258,13 @@ export const searchProducts = `query SearchProducts(
         owner
         createdAt
       }
-      file {
+      files {
         bucket
         region
         key
       }
       price
       shipped
-      user {
-        id
-        username
-        email
-        phone
-        registered
-      }
       owner
       comments {
         nextToken

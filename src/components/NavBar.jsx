@@ -1,19 +1,19 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import InputBase from "@material-ui/core/InputBase";
-import Badge from "@material-ui/core/Badge";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-import MailIcon from "@material-ui/icons/Mail";
-import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
+import Fab from "@material-ui/core/Fab";
+import NavigationIcon from "@material-ui/icons/Navigation";
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -77,7 +77,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const NavBar = () => {
+const NavBar = ({ user, signOut }) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -103,6 +103,22 @@ const NavBar = () => {
   }
 
   const menuId = "primary-search-account-menu";
+
+  const authLinks = (
+    <>
+      <MenuItem onClick={handleMenuClose}>
+        <Link to="/perfil">Perfil</Link>
+      </MenuItem>
+      <MenuItem onClick={signOut}>Sair</MenuItem>
+    </>
+  );
+
+  const guestLinks = (
+    <MenuItem onClick={handleMenuClose}>
+      <Link to="/auth">Entrar</Link>
+    </MenuItem>
+  );
+
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -113,8 +129,7 @@ const NavBar = () => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      {user ? authLinks : guestLinks}
     </Menu>
   );
 
@@ -129,22 +144,6 @@ const NavBar = () => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="secondary">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton aria-label="show 11 new notifications" color="inherit">
-          <Badge badgeContent={11} color="secondary">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           aria-label="account of current user"
@@ -154,7 +153,7 @@ const NavBar = () => {
         >
           <AccountCircle />
         </IconButton>
-        <p>Profile</p>
+        <p>Minha Conta</p>
       </MenuItem>
     </Menu>
   );
@@ -172,14 +171,14 @@ const NavBar = () => {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Material-UI
+            Vitrine Barreiras
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
             <InputBase
-              placeholder="Search…"
+              placeholder="Buscar..."
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput
@@ -187,18 +186,21 @@ const NavBar = () => {
               inputProps={{ "aria-label": "search" }}
             />
           </div>
+          <Fab
+            variant="extended"
+            color="secondary"
+            aria-label="add"
+            className={classes.margin}
+          >
+            <NavigationIcon className={classes.extendedIcon} />
+            {user ? (
+              <Link to="/novo">Vender</Link>
+            ) : (
+              <Link to="/auth">Vender</Link>
+            )}
+          </Fab>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
             <IconButton
               edge="end"
               aria-label="account of current user"

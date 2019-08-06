@@ -20,20 +20,13 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
         owner
         createdAt
       }
-      file {
+      files {
         bucket
         region
         key
       }
       price
       shipped
-      user {
-        id
-        username
-        email
-        phone
-        registered
-      }
       owner
       comments {
         nextToken
@@ -63,20 +56,13 @@ export const updateComment = `mutation UpdateComment($input: UpdateCommentInput!
         owner
         createdAt
       }
-      file {
+      files {
         bucket
         region
         key
       }
       price
       shipped
-      user {
-        id
-        username
-        email
-        phone
-        registered
-      }
       owner
       comments {
         nextToken
@@ -106,20 +92,13 @@ export const deleteComment = `mutation DeleteComment($input: DeleteCommentInput!
         owner
         createdAt
       }
-      file {
+      files {
         bucket
         region
         key
       }
       price
       shipped
-      user {
-        id
-        username
-        email
-        phone
-        registered
-      }
       owner
       comments {
         nextToken
@@ -227,26 +206,13 @@ export const createProduct = `mutation CreateProduct($input: CreateProductInput!
       owner
       createdAt
     }
-    file {
+    files {
       bucket
       region
       key
     }
     price
     shipped
-    user {
-      id
-      username
-      email
-      phone
-      registered
-      products {
-        nextToken
-      }
-      orders {
-        nextToken
-      }
-    }
     owner
     comments {
       items {
@@ -279,26 +245,13 @@ export const updateProduct = `mutation UpdateProduct($input: UpdateProductInput!
       owner
       createdAt
     }
-    file {
+    files {
       bucket
       region
       key
     }
     price
     shipped
-    user {
-      id
-      username
-      email
-      phone
-      registered
-      products {
-        nextToken
-      }
-      orders {
-        nextToken
-      }
-    }
     owner
     comments {
       items {
@@ -331,26 +284,13 @@ export const deleteProduct = `mutation DeleteProduct($input: DeleteProductInput!
       owner
       createdAt
     }
-    file {
+    files {
       bucket
       region
       key
     }
     price
     shipped
-    user {
-      id
-      username
-      email
-      phone
-      registered
-      products {
-        nextToken
-      }
-      orders {
-        nextToken
-      }
-    }
     owner
     comments {
       items {
@@ -371,22 +311,6 @@ export const registerUser = `mutation RegisterUser($input: CreateUserInput!) {
     email
     phone
     registered
-    products {
-      items {
-        id
-        title
-        condition
-        description
-        district
-        category
-        quantity
-        price
-        shipped
-        owner
-        createdAt
-      }
-      nextToken
-    }
     orders {
       items {
         id
@@ -404,22 +328,6 @@ export const updateUser = `mutation UpdateUser($input: UpdateUserInput!) {
     email
     phone
     registered
-    products {
-      items {
-        id
-        title
-        condition
-        description
-        district
-        category
-        quantity
-        price
-        shipped
-        owner
-        createdAt
-      }
-      nextToken
-    }
     orders {
       items {
         id
@@ -448,20 +356,13 @@ export const createOrder = `mutation CreateOrder($input: CreateOrderInput!) {
         owner
         createdAt
       }
-      file {
+      files {
         bucket
         region
         key
       }
       price
       shipped
-      user {
-        id
-        username
-        email
-        phone
-        registered
-      }
       owner
       comments {
         nextToken
@@ -474,9 +375,6 @@ export const createOrder = `mutation CreateOrder($input: CreateOrderInput!) {
       email
       phone
       registered
-      products {
-        nextToken
-      }
       orders {
         nextToken
       }
