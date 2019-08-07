@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import Container from "@material-ui/core/Container";
 import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
 import MarketPage from "./pages/MarketPage";
 import ProductPage from "./pages/ProductPage";
 import NavBar from "./components/NavBar";
-import AuthPage from "./components/AuthPage";
+import AuthPage from "./components/Auth/AuthPage";
 import CreateProduct from "./pages/CreateProduct";
 import { getUser } from "./graphql/queries";
 import { registerUser } from "./graphql/mutations";
@@ -36,6 +37,7 @@ function App() {
         getUserData();
         registerNewUser(data.payload.data);
         history.push("/");
+        toast.success("Bem-vindo(a)", { autoClose: 1500 });
         break;
       case "signUp":
         console.log("signed up");
@@ -43,6 +45,7 @@ function App() {
       case "signOut":
         console.log("signed out");
         setUser(null);
+        history.push("/auth");
         break;
       case "signIn_failure":
         logger.error("user sign in failed");

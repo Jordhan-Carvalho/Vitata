@@ -10,6 +10,11 @@ import history from "./utils/history";
 // Amplify config
 import Amplify from "aws-amplify";
 import awsmobile from "./aws-exports";
+import { I18n } from "aws-amplify";
+import { dict } from "./utils/amplifyLang";
+
+I18n.putVocabularies(dict);
+I18n.setLanguage("pt");
 
 Amplify.configure(awsmobile);
 
