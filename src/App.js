@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { toast } from "react-toastify";
-import Container from "@material-ui/core/Container";
 import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
 import MarketPage from "./pages/MarketPage";
@@ -13,7 +12,10 @@ import CreateProduct from "./pages/CreateProduct";
 import { getUser } from "./graphql/queries";
 import { registerUser } from "./graphql/mutations";
 import history from "./utils/history";
+import UserContext from "./utils/userContext";
 import "react-toastify/dist/ReactToastify.css";
+
+import Container from "@material-ui/core/Container";
 
 //Amplify
 import { API, graphqlOperation, Auth, Hub, Logger } from "aws-amplify";
@@ -83,7 +85,7 @@ function App() {
       try {
         const registerUserInput = {
           id,
-          username: signInData.attributes.email,
+          username: signInData.username,
           email: signInData.attributes.email,
           phone: signInData.attributes.phone_number,
           registered: true
@@ -107,24 +109,32 @@ function App() {
   };
 
   return (
-    <>
+    <UserContext.Provider value={{ user, userAttributes }}>
       <ToastContainer />
       <NavBar user={user} signOut={signOut} />
-      <Container maxWidth="sm">
+      <Container maxWidth="lg">
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/perfil" component={() => <ProfilePage />} />
+          <Route
+            exact
+            path="/perfil"
+            component={props => <ProfilePage {...props} />}
+          />
           <Route exact path="/loja/:id" component={MarketPage} />
           <Route exact path="/auth" component={AuthPage} />
           <Route
             exact
             path="/novo"
-            component={() => <CreateProduct user={user} />}
+            component={props => <CreateProduct {...props} user={user} />}
           />
-          <Route exact path="/produto/:id" component={ProductPage} />
+          <Route
+            exact
+            path="/produto/:id"
+            component={props => <ProductPage {...props} user={user} />}
+          />
         </Switch>
       </Container>
-    </>
+    </UserContext.Provider>
   );
 }
 

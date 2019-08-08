@@ -106,7 +106,10 @@ const CreateProduct = ({ user }) => {
       let filesForUpload = [];
       for (let file of filesArray) {
         const { name: fileName, type: mimeType } = file;
-        const key = `${identityId}/${Date.now()}-${fileName}`;
+        const key = `${identityId}/${Date.now()}-${fileName.replace(
+          / +/g,
+          ""
+        )}`;
         const fileForUpload = {
           bucket,
           key,

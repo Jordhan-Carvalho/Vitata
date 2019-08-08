@@ -50,7 +50,7 @@ const CustomSignUp = ({
     e.preventDefault();
     const phone_brazil = `+55${phone_number}`;
     try {
-      const res = await Auth.signUp({
+      await Auth.signUp({
         username,
         password,
         attributes: {

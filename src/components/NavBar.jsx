@@ -168,10 +168,12 @@ const NavBar = ({ user, signOut }) => {
             color="inherit"
             aria-label="open drawer"
           >
-            <MenuIcon />
+            <Link to="/">
+              <MenuIcon />
+            </Link>
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            Vitrine Barreiras
+            <Link to="/">Vitrine Barreiras</Link>
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
