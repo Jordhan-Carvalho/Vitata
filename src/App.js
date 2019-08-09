@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { toast } from "react-toastify";
 import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
 import MarketPage from "./pages/MarketPage";
@@ -9,6 +8,7 @@ import ProductPage from "./pages/ProductPage";
 import NavBar from "./components/NavBar";
 import AuthPage from "./components/Auth/AuthPage";
 import CreateProduct from "./pages/CreateProduct";
+import CreateMarket from "./pages/CreateMarket";
 import { getUser } from "./graphql/queries";
 import { registerUser } from "./graphql/mutations";
 import history from "./utils/history";
@@ -39,7 +39,6 @@ function App() {
         getUserData();
         registerNewUser(data.payload.data);
         history.push("/");
-        toast.success("Bem-vindo(a)", { autoClose: 1500 });
         break;
       case "signUp":
         console.log("signed up");
@@ -67,6 +66,7 @@ function App() {
   const getUserData = async () => {
     const userData = await Auth.currentAuthenticatedUser();
     userData ? setUser(userData) : setUser(null);
+    console.log(userData);
     getUserAttributes(userData);
   };
 
@@ -126,6 +126,11 @@ function App() {
             exact
             path="/novo"
             component={props => <CreateProduct {...props} user={user} />}
+          />
+          <Route
+            exact
+            path="/novo/market"
+            component={props => <CreateMarket {...props} user={user} />}
           />
           <Route
             exact

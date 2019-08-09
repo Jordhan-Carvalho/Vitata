@@ -5,6 +5,7 @@ export const getComment = `query GetComment($id: ID!) {
   getComment(id: $id) {
     id
     content
+    owner
     product {
       id
       title
@@ -16,7 +17,10 @@ export const getComment = `query GetComment($id: ID!) {
       market {
         id
         name
-        tags
+        banner
+        displayImage
+        description
+        category
         owner
         createdAt
       }
@@ -46,6 +50,7 @@ export const listComments = `query ListComments(
     items {
       id
       content
+      owner
       product {
         id
         title
@@ -69,6 +74,8 @@ export const getMarket = `query GetMarket($id: ID!) {
   getMarket(id: $id) {
     id
     name
+    banner
+    displayImage
     products {
       items {
         id
@@ -85,7 +92,8 @@ export const getMarket = `query GetMarket($id: ID!) {
       }
       nextToken
     }
-    tags
+    description
+    category
     owner
     createdAt
   }
@@ -100,10 +108,13 @@ export const listMarkets = `query ListMarkets(
     items {
       id
       name
+      banner
+      displayImage
       products {
         nextToken
       }
-      tags
+      description
+      category
       owner
       createdAt
     }
@@ -123,10 +134,13 @@ export const getProduct = `query GetProduct($id: ID!) {
     market {
       id
       name
+      banner
+      displayImage
       products {
         nextToken
       }
-      tags
+      description
+      category
       owner
       createdAt
     }
@@ -142,6 +156,7 @@ export const getProduct = `query GetProduct($id: ID!) {
       items {
         id
         content
+        owner
         createdAt
       }
       nextToken
@@ -167,7 +182,10 @@ export const listProducts = `query ListProducts(
       market {
         id
         name
-        tags
+        banner
+        displayImage
+        description
+        category
         owner
         createdAt
       }
@@ -220,10 +238,13 @@ export const searchMarkets = `query SearchMarkets(
     items {
       id
       name
+      banner
+      displayImage
       products {
         nextToken
       }
-      tags
+      description
+      category
       owner
       createdAt
     }
@@ -254,7 +275,10 @@ export const searchProducts = `query SearchProducts(
       market {
         id
         name
-        tags
+        banner
+        displayImage
+        description
+        category
         owner
         createdAt
       }

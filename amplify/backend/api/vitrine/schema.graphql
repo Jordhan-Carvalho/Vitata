@@ -1,16 +1,31 @@
 type Comment @model {
   id: ID!
   content: String
+  owner: String!
   product: Product @connection(name: "ProductComments")
   createdAt: String
 }
 
-type Market @model @searchable {
+type Market
+  @model
+  @searchable
+  @auth(
+    rules: [
+      {
+        allow: groups
+        groups: ["members"]
+        operations: [create, update, delete]
+      }
+    ]
+  ) {
   id: ID!
   name: String!
+  banner: String!
+  displayImage: String!
   products: [Product]
     @connection(name: "MarketProducts", sortField: "createdAt")
-  tags: [String]
+  description: String!
+  category: String!
   owner: String!
   createdAt: String
 }

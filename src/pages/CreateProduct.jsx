@@ -5,7 +5,6 @@ import { createProduct } from "../graphql/mutations";
 import InfoGeral from "../components/InfoGeral";
 
 import { makeStyles } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import Paper from "@material-ui/core/Paper";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
@@ -171,61 +170,58 @@ const CreateProduct = ({ user }) => {
 
   return (
     user && (
-      <>
-        <CssBaseline />
-        <main className={classes.layout}>
-          <Paper className={classes.paper}>
-            <Typography component="h1" variant="h4" align="center">
-              Produto
-            </Typography>
-            <Stepper activeStep={activeStep} className={classes.stepper}>
-              {steps.map(label => (
-                <Step key={label}>
-                  <StepLabel>{label}</StepLabel>
-                </Step>
-              ))}
-            </Stepper>
-            <>
-              {activeStep === steps.length ? (
-                <></>
-              ) : (
-                <>
-                  {getStepContent(activeStep)}
-                  <div className={classes.buttons}>
-                    {activeStep !== 0 && (
-                      <Button onClick={handleBack} className={classes.button}>
-                        Voltar
-                      </Button>
-                    )}
-
-                    <Button
-                      disabled={
-                        !filesArray ||
-                        !formData.description ||
-                        !formData.condition ||
-                        !formData.title ||
-                        !formData.district ||
-                        !formData.shipped ||
-                        !formData.price ||
-                        !formData.quantity ||
-                        formData.isUploading
-                      }
-                      variant="contained"
-                      color="primary"
-                      onClick={
-                        activeStep === steps.length - 1 ? onSubmit : handleNext
-                      }
-                      className={classes.button}
-                    >
-                      {activeStep === steps.length - 1 ? "Criar" : "Próximo"}
+      <main className={classes.layout}>
+        <Paper className={classes.paper}>
+          <Typography component="h1" variant="h4" align="center">
+            Produto
+          </Typography>
+          <Stepper activeStep={activeStep} className={classes.stepper}>
+            {steps.map(label => (
+              <Step key={label}>
+                <StepLabel>{label}</StepLabel>
+              </Step>
+            ))}
+          </Stepper>
+          <>
+            {activeStep === steps.length ? (
+              <></>
+            ) : (
+              <>
+                {getStepContent(activeStep)}
+                <div className={classes.buttons}>
+                  {activeStep !== 0 && (
+                    <Button onClick={handleBack} className={classes.button}>
+                      Voltar
                     </Button>
-                  </div>
-                </>
-              )}
-            </>
-          </Paper>
-        </main>
-      </>
+                  )}
+
+                  <Button
+                    disabled={
+                      !filesArray ||
+                      !formData.description ||
+                      !formData.condition ||
+                      !formData.title ||
+                      !formData.district ||
+                      !formData.shipped ||
+                      !formData.price ||
+                      !formData.quantity ||
+                      formData.isUploading
+                    }
+                    variant="contained"
+                    color="primary"
+                    onClick={
+                      activeStep === steps.length - 1 ? onSubmit : handleNext
+                    }
+                    className={classes.button}
+                  >
+                    {activeStep === steps.length - 1 ? "Criar" : "Próximo"}
+                  </Button>
+                </div>
+              </>
+            )}
+          </>
+        </Paper>
+      </main>
     )
   );
 };

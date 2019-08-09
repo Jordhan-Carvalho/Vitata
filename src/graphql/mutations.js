@@ -5,6 +5,7 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
   createComment(input: $input) {
     id
     content
+    owner
     product {
       id
       title
@@ -16,7 +17,10 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
       market {
         id
         name
-        tags
+        banner
+        displayImage
+        description
+        category
         owner
         createdAt
       }
@@ -41,6 +45,7 @@ export const updateComment = `mutation UpdateComment($input: UpdateCommentInput!
   updateComment(input: $input) {
     id
     content
+    owner
     product {
       id
       title
@@ -52,7 +57,10 @@ export const updateComment = `mutation UpdateComment($input: UpdateCommentInput!
       market {
         id
         name
-        tags
+        banner
+        displayImage
+        description
+        category
         owner
         createdAt
       }
@@ -77,6 +85,7 @@ export const deleteComment = `mutation DeleteComment($input: DeleteCommentInput!
   deleteComment(input: $input) {
     id
     content
+    owner
     product {
       id
       title
@@ -88,7 +97,10 @@ export const deleteComment = `mutation DeleteComment($input: DeleteCommentInput!
       market {
         id
         name
-        tags
+        banner
+        displayImage
+        description
+        category
         owner
         createdAt
       }
@@ -113,6 +125,8 @@ export const createMarket = `mutation CreateMarket($input: CreateMarketInput!) {
   createMarket(input: $input) {
     id
     name
+    banner
+    displayImage
     products {
       items {
         id
@@ -129,7 +143,8 @@ export const createMarket = `mutation CreateMarket($input: CreateMarketInput!) {
       }
       nextToken
     }
-    tags
+    description
+    category
     owner
     createdAt
   }
@@ -139,6 +154,8 @@ export const updateMarket = `mutation UpdateMarket($input: UpdateMarketInput!) {
   updateMarket(input: $input) {
     id
     name
+    banner
+    displayImage
     products {
       items {
         id
@@ -155,7 +172,8 @@ export const updateMarket = `mutation UpdateMarket($input: UpdateMarketInput!) {
       }
       nextToken
     }
-    tags
+    description
+    category
     owner
     createdAt
   }
@@ -165,6 +183,8 @@ export const deleteMarket = `mutation DeleteMarket($input: DeleteMarketInput!) {
   deleteMarket(input: $input) {
     id
     name
+    banner
+    displayImage
     products {
       items {
         id
@@ -181,7 +201,8 @@ export const deleteMarket = `mutation DeleteMarket($input: DeleteMarketInput!) {
       }
       nextToken
     }
-    tags
+    description
+    category
     owner
     createdAt
   }
@@ -199,10 +220,13 @@ export const createProduct = `mutation CreateProduct($input: CreateProductInput!
     market {
       id
       name
+      banner
+      displayImage
       products {
         nextToken
       }
-      tags
+      description
+      category
       owner
       createdAt
     }
@@ -218,6 +242,7 @@ export const createProduct = `mutation CreateProduct($input: CreateProductInput!
       items {
         id
         content
+        owner
         createdAt
       }
       nextToken
@@ -238,10 +263,13 @@ export const updateProduct = `mutation UpdateProduct($input: UpdateProductInput!
     market {
       id
       name
+      banner
+      displayImage
       products {
         nextToken
       }
-      tags
+      description
+      category
       owner
       createdAt
     }
@@ -257,6 +285,7 @@ export const updateProduct = `mutation UpdateProduct($input: UpdateProductInput!
       items {
         id
         content
+        owner
         createdAt
       }
       nextToken
@@ -277,10 +306,13 @@ export const deleteProduct = `mutation DeleteProduct($input: DeleteProductInput!
     market {
       id
       name
+      banner
+      displayImage
       products {
         nextToken
       }
-      tags
+      description
+      category
       owner
       createdAt
     }
@@ -296,6 +328,7 @@ export const deleteProduct = `mutation DeleteProduct($input: DeleteProductInput!
       items {
         id
         content
+        owner
         createdAt
       }
       nextToken
@@ -352,7 +385,10 @@ export const createOrder = `mutation CreateOrder($input: CreateOrderInput!) {
       market {
         id
         name
-        tags
+        banner
+        displayImage
+        description
+        category
         owner
         createdAt
       }

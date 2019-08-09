@@ -5,6 +5,7 @@ export const onCreateComment = `subscription OnCreateComment {
   onCreateComment {
     id
     content
+    owner
     product {
       id
       title
@@ -16,7 +17,10 @@ export const onCreateComment = `subscription OnCreateComment {
       market {
         id
         name
-        tags
+        banner
+        displayImage
+        description
+        category
         owner
         createdAt
       }
@@ -41,6 +45,7 @@ export const onUpdateComment = `subscription OnUpdateComment {
   onUpdateComment {
     id
     content
+    owner
     product {
       id
       title
@@ -52,7 +57,10 @@ export const onUpdateComment = `subscription OnUpdateComment {
       market {
         id
         name
-        tags
+        banner
+        displayImage
+        description
+        category
         owner
         createdAt
       }
@@ -77,6 +85,7 @@ export const onDeleteComment = `subscription OnDeleteComment {
   onDeleteComment {
     id
     content
+    owner
     product {
       id
       title
@@ -88,7 +97,10 @@ export const onDeleteComment = `subscription OnDeleteComment {
       market {
         id
         name
-        tags
+        banner
+        displayImage
+        description
+        category
         owner
         createdAt
       }
@@ -113,6 +125,8 @@ export const onCreateMarket = `subscription OnCreateMarket {
   onCreateMarket {
     id
     name
+    banner
+    displayImage
     products {
       items {
         id
@@ -129,7 +143,8 @@ export const onCreateMarket = `subscription OnCreateMarket {
       }
       nextToken
     }
-    tags
+    description
+    category
     owner
     createdAt
   }
@@ -139,6 +154,8 @@ export const onUpdateMarket = `subscription OnUpdateMarket {
   onUpdateMarket {
     id
     name
+    banner
+    displayImage
     products {
       items {
         id
@@ -155,7 +172,8 @@ export const onUpdateMarket = `subscription OnUpdateMarket {
       }
       nextToken
     }
-    tags
+    description
+    category
     owner
     createdAt
   }
@@ -165,6 +183,8 @@ export const onDeleteMarket = `subscription OnDeleteMarket {
   onDeleteMarket {
     id
     name
+    banner
+    displayImage
     products {
       items {
         id
@@ -181,7 +201,8 @@ export const onDeleteMarket = `subscription OnDeleteMarket {
       }
       nextToken
     }
-    tags
+    description
+    category
     owner
     createdAt
   }
@@ -199,10 +220,13 @@ export const onCreateProduct = `subscription OnCreateProduct {
     market {
       id
       name
+      banner
+      displayImage
       products {
         nextToken
       }
-      tags
+      description
+      category
       owner
       createdAt
     }
@@ -218,6 +242,7 @@ export const onCreateProduct = `subscription OnCreateProduct {
       items {
         id
         content
+        owner
         createdAt
       }
       nextToken
@@ -238,10 +263,13 @@ export const onUpdateProduct = `subscription OnUpdateProduct {
     market {
       id
       name
+      banner
+      displayImage
       products {
         nextToken
       }
-      tags
+      description
+      category
       owner
       createdAt
     }
@@ -257,6 +285,7 @@ export const onUpdateProduct = `subscription OnUpdateProduct {
       items {
         id
         content
+        owner
         createdAt
       }
       nextToken
@@ -277,10 +306,13 @@ export const onDeleteProduct = `subscription OnDeleteProduct {
     market {
       id
       name
+      banner
+      displayImage
       products {
         nextToken
       }
-      tags
+      description
+      category
       owner
       createdAt
     }
@@ -296,6 +328,7 @@ export const onDeleteProduct = `subscription OnDeleteProduct {
       items {
         id
         content
+        owner
         createdAt
       }
       nextToken
