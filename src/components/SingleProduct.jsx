@@ -38,10 +38,10 @@ const SingleProduct = ({ product }) => {
       <CardActionArea>
         <CardMedia
           component="img"
-          alt="Contemplative Reptile"
+          alt="Foto do produto"
           height="140"
           image={imageUrl}
-          title="Contemplative Reptile"
+          title="Foto do produto"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">

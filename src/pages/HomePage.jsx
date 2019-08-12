@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import Products from "../components/Products";
-import Markets from "../components/Markets";
 import ItemContainer from "../components/ItemContainer";
 
 import { makeStyles } from "@material-ui/core/styles";

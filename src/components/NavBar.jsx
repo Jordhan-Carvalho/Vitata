@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { API, graphqlOperation } from "aws-amplify";
+import { listProducts } from "../graphql/queries";
+
 import { fade, makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -77,13 +80,24 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const NavBar = ({ user, signOut }) => {
+const NavBar = ({
+  user,
+  signOut,
+  history,
+  searchResults,
+  setSearchResults
+}) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  // ###SEARCH###
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isSearching, setIsSearching] = useState(false);
+  // ###SEARCH###
 
   function handleProfileMenuOpen(event) {
     setAnchorEl(event.currentTarget);
@@ -158,6 +172,40 @@ const NavBar = ({ user, signOut }) => {
     </Menu>
   );
 
+  // ### SEARCH ###
+  const handleSearchChange = e => setSearchTerm(e.target.value);
+
+  const handleClearSearch = () => {
+    setSearchTerm("");
+    setSearchResults([]);
+  };
+
+  const handleSearch = async e => {
+    e.preventDefault();
+    setIsSearching(true);
+
+    try {
+      const res = await API.graphql(
+        graphqlOperation(listProducts, {
+          filter: {
+            or: [
+              { title: { contains: searchTerm } },
+              { description: { contains: searchTerm } },
+              { category: { contains: searchTerm } }
+            ]
+          }
+        })
+      );
+      console.log(res);
+      setSearchResults(res.data.listProducts.items);
+      setIsSearching(false);
+      history.push("/pesquisa");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  // ###SEARCH###
+
   return (
     <div className={classes.grow}>
       <AppBar position="static">
@@ -175,19 +223,23 @@ const NavBar = ({ user, signOut }) => {
           <Typography className={classes.title} variant="h6" noWrap>
             <Link to="/">Vitrine Barreiras</Link>
           </Typography>
-          <div className={classes.search}>
+
+          <form className={classes.search} onSubmit={handleSearch}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
             <InputBase
               placeholder="Buscar..."
+              value={searchTerm}
+              onChange={handleSearchChange}
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput
               }}
               inputProps={{ "aria-label": "search" }}
             />
-          </div>
+          </form>
+
           <Fab
             variant="extended"
             color="secondary"

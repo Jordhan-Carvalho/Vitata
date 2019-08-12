@@ -34,10 +34,10 @@ const SingleMarket = ({ market }) => {
       <CardActionArea>
         <CardMedia
           component="img"
-          alt="Contemplative Reptile"
+          alt="Foto da loja"
           height="140"
           image={market.displayImage}
-          title="Contemplative Reptile"
+          title="Foto da loja"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">

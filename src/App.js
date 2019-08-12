@@ -7,6 +7,7 @@ import MarketPage from "./pages/MarketPage";
 import ProductPage from "./pages/ProductPage";
 import NavBar from "./components/NavBar";
 import AuthPage from "./components/Auth/AuthPage";
+import SearchResult from "./components/SearchResult";
 import CreateProduct from "./pages/CreateProduct";
 import CreateMarket from "./pages/CreateMarket";
 import { getUser } from "./graphql/queries";
@@ -23,6 +24,8 @@ import { API, graphqlOperation, Auth, Hub, Logger } from "aws-amplify";
 function App() {
   const [user, setUser] = useState(null);
   const [userAttributes, setUserAttributes] = useState(null);
+
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     getUserData();
@@ -111,7 +114,13 @@ function App() {
   return (
     <UserContext.Provider value={{ user, userAttributes }}>
       <ToastContainer />
-      <NavBar user={user} signOut={signOut} />
+      <NavBar
+        user={user}
+        signOut={signOut}
+        history={history}
+        searchResults={searchResults}
+        setSearchResults={setSearchResults}
+      />
       <Container maxWidth="lg">
         <Switch>
           <Route exact path="/" component={HomePage} />
@@ -131,6 +140,13 @@ function App() {
             exact
             path="/novo/market"
             component={props => <CreateMarket {...props} user={user} />}
+          />
+          <Route
+            exact
+            path="/pesquisa"
+            component={props => (
+              <SearchResult {...props} searchResults={searchResults} />
+            )}
           />
           <Route
             exact
