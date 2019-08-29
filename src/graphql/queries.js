@@ -32,6 +32,9 @@ export const getComment = `query GetComment($id: ID!) {
       price
       shipped
       owner
+      productList {
+        id
+      }
       comments {
         nextToken
       }
@@ -152,6 +155,12 @@ export const getProduct = `query GetProduct($id: ID!) {
     price
     shipped
     owner
+    productList {
+      id
+      products {
+        nextToken
+      }
+    }
     comments {
       items {
         id
@@ -197,10 +206,51 @@ export const listProducts = `query ListProducts(
       price
       shipped
       owner
+      productList {
+        id
+      }
       comments {
         nextToken
       }
       createdAt
+    }
+    nextToken
+  }
+}
+`;
+export const getProductList = `query GetProductList($id: ID!) {
+  getProductList(id: $id) {
+    id
+    products {
+      items {
+        id
+        title
+        condition
+        description
+        district
+        category
+        quantity
+        price
+        shipped
+        owner
+        createdAt
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const listProductLists = `query ListProductLists(
+  $filter: ModelProductListFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listProductLists(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      products {
+        nextToken
+      }
     }
     nextToken
   }
@@ -290,6 +340,9 @@ export const searchProducts = `query SearchProducts(
       price
       shipped
       owner
+      productList {
+        id
+      }
       comments {
         nextToken
       }

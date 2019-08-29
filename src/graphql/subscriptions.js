@@ -32,6 +32,9 @@ export const onCreateComment = `subscription OnCreateComment {
       price
       shipped
       owner
+      productList {
+        id
+      }
       comments {
         nextToken
       }
@@ -72,6 +75,9 @@ export const onUpdateComment = `subscription OnUpdateComment {
       price
       shipped
       owner
+      productList {
+        id
+      }
       comments {
         nextToken
       }
@@ -112,6 +118,9 @@ export const onDeleteComment = `subscription OnDeleteComment {
       price
       shipped
       owner
+      productList {
+        id
+      }
       comments {
         nextToken
       }
@@ -238,6 +247,12 @@ export const onCreateProduct = `subscription OnCreateProduct {
     price
     shipped
     owner
+    productList {
+      id
+      products {
+        nextToken
+      }
+    }
     comments {
       items {
         id
@@ -281,6 +296,12 @@ export const onUpdateProduct = `subscription OnUpdateProduct {
     price
     shipped
     owner
+    productList {
+      id
+      products {
+        nextToken
+      }
+    }
     comments {
       items {
         id
@@ -324,6 +345,12 @@ export const onDeleteProduct = `subscription OnDeleteProduct {
     price
     shipped
     owner
+    productList {
+      id
+      products {
+        nextToken
+      }
+    }
     comments {
       items {
         id
@@ -334,6 +361,72 @@ export const onDeleteProduct = `subscription OnDeleteProduct {
       nextToken
     }
     createdAt
+  }
+}
+`;
+export const onCreateProductList = `subscription OnCreateProductList {
+  onCreateProductList {
+    id
+    products {
+      items {
+        id
+        title
+        condition
+        description
+        district
+        category
+        quantity
+        price
+        shipped
+        owner
+        createdAt
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const onUpdateProductList = `subscription OnUpdateProductList {
+  onUpdateProductList {
+    id
+    products {
+      items {
+        id
+        title
+        condition
+        description
+        district
+        category
+        quantity
+        price
+        shipped
+        owner
+        createdAt
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const onDeleteProductList = `subscription OnDeleteProductList {
+  onDeleteProductList {
+    id
+    products {
+      items {
+        id
+        title
+        condition
+        description
+        district
+        category
+        quantity
+        price
+        shipped
+        owner
+        createdAt
+      }
+      nextToken
+    }
   }
 }
 `;

@@ -54,9 +54,17 @@ type Product
   price: Float!
   shipped: String!
   owner: String
+  productList: ProductList @connection(name: "SortedProducts")
   comments: [Comment]
     @connection(name: "ProductComments", sortField: "createdAt")
   createdAt: String
+}
+
+# used to sort by date
+type ProductList @model {
+  id: ID!
+  products: [Product]
+    @connection(name: "SortedProducts", sortField: "createdAt")
 }
 
 type S3Object {

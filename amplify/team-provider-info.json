@@ -1,19 +1,19 @@
 {
-    "dev": {
-        "awscloudformation": {
-            "AuthRoleName": "vitrine-dev-20190805161720-authRole",
-            "UnauthRoleArn": "arn:aws:iam::007008111373:role/vitrine-dev-20190805161720-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::007008111373:role/vitrine-dev-20190805161720-authRole",
-            "Region": "us-east-1",
-            "DeploymentBucketName": "vitrine-dev-20190805161720-deployment",
-            "UnauthRoleName": "vitrine-dev-20190805161720-unauthRole",
-            "StackName": "vitrine-dev-20190805161720",
-            "StackId": "arn:aws:cloudformation:us-east-1:007008111373:stack/vitrine-dev-20190805161720/a6130a20-b7b5-11e9-9d59-0a1fbafbd996"
-        },
-        "categories": {
-            "auth": {
-                "vitrineb196df6f": {}
-            }
-        }
-    }
+	"dev": {
+		"awscloudformation": {
+			"AuthRoleName": "vitrine-dev-20190814101004-authRole",
+			"UnauthRoleArn": "arn:aws:iam::007008111373:role/vitrine-dev-20190814101004-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::007008111373:role/vitrine-dev-20190814101004-authRole",
+			"Region": "us-east-1",
+			"DeploymentBucketName": "vitrine-dev-20190814101004-deployment",
+			"UnauthRoleName": "vitrine-dev-20190814101004-unauthRole",
+			"StackName": "vitrine-dev-20190814101004",
+			"StackId": "arn:aws:cloudformation:us-east-1:007008111373:stack/vitrine-dev-20190814101004/d546e060-be94-11e9-a0b1-0e6311020172"
+		},
+		"categories": {
+			"auth": {
+				"vitrineb196df6f": {}
+			}
+		}
+	}
 }

@@ -32,6 +32,9 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
       price
       shipped
       owner
+      productList {
+        id
+      }
       comments {
         nextToken
       }
@@ -72,6 +75,9 @@ export const updateComment = `mutation UpdateComment($input: UpdateCommentInput!
       price
       shipped
       owner
+      productList {
+        id
+      }
       comments {
         nextToken
       }
@@ -112,6 +118,9 @@ export const deleteComment = `mutation DeleteComment($input: DeleteCommentInput!
       price
       shipped
       owner
+      productList {
+        id
+      }
       comments {
         nextToken
       }
@@ -238,6 +247,12 @@ export const createProduct = `mutation CreateProduct($input: CreateProductInput!
     price
     shipped
     owner
+    productList {
+      id
+      products {
+        nextToken
+      }
+    }
     comments {
       items {
         id
@@ -281,6 +296,12 @@ export const updateProduct = `mutation UpdateProduct($input: UpdateProductInput!
     price
     shipped
     owner
+    productList {
+      id
+      products {
+        nextToken
+      }
+    }
     comments {
       items {
         id
@@ -324,6 +345,12 @@ export const deleteProduct = `mutation DeleteProduct($input: DeleteProductInput!
     price
     shipped
     owner
+    productList {
+      id
+      products {
+        nextToken
+      }
+    }
     comments {
       items {
         id
@@ -334,6 +361,72 @@ export const deleteProduct = `mutation DeleteProduct($input: DeleteProductInput!
       nextToken
     }
     createdAt
+  }
+}
+`;
+export const createProductList = `mutation CreateProductList($input: CreateProductListInput!) {
+  createProductList(input: $input) {
+    id
+    products {
+      items {
+        id
+        title
+        condition
+        description
+        district
+        category
+        quantity
+        price
+        shipped
+        owner
+        createdAt
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const updateProductList = `mutation UpdateProductList($input: UpdateProductListInput!) {
+  updateProductList(input: $input) {
+    id
+    products {
+      items {
+        id
+        title
+        condition
+        description
+        district
+        category
+        quantity
+        price
+        shipped
+        owner
+        createdAt
+      }
+      nextToken
+    }
+  }
+}
+`;
+export const deleteProductList = `mutation DeleteProductList($input: DeleteProductListInput!) {
+  deleteProductList(input: $input) {
+    id
+    products {
+      items {
+        id
+        title
+        condition
+        description
+        district
+        category
+        quantity
+        price
+        shipped
+        owner
+        createdAt
+      }
+      nextToken
+    }
   }
 }
 `;
@@ -400,6 +493,9 @@ export const createOrder = `mutation CreateOrder($input: CreateOrderInput!) {
       price
       shipped
       owner
+      productList {
+        id
+      }
       comments {
         nextToken
       }
