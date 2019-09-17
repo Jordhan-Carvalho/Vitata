@@ -1,9 +1,7 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Vitrine
 
-## Available Scripts
+PoC
 
-In the project directory, you can run:
-
-### Vitrine
+## Tec
 
 React + AWS

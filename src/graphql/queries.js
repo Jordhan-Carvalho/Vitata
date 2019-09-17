@@ -1,4 +1,4 @@
-// eslint-disable
+/* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
 export const getComment = `query GetComment($id: ID!) {
@@ -32,13 +32,11 @@ export const getComment = `query GetComment($id: ID!) {
       price
       shipped
       owner
-      productList {
-        id
-      }
       comments {
         nextToken
       }
       createdAt
+      queryName
     }
     createdAt
   }
@@ -66,6 +64,7 @@ export const listComments = `query ListComments(
         shipped
         owner
         createdAt
+        queryName
       }
       createdAt
     }
@@ -92,6 +91,7 @@ export const getMarket = `query GetMarket($id: ID!) {
         shipped
         owner
         createdAt
+        queryName
       }
       nextToken
     }
@@ -155,12 +155,6 @@ export const getProduct = `query GetProduct($id: ID!) {
     price
     shipped
     owner
-    productList {
-      id
-      products {
-        nextToken
-      }
-    }
     comments {
       items {
         id
@@ -171,6 +165,7 @@ export const getProduct = `query GetProduct($id: ID!) {
       nextToken
     }
     createdAt
+    queryName
   }
 }
 `;
@@ -206,51 +201,11 @@ export const listProducts = `query ListProducts(
       price
       shipped
       owner
-      productList {
-        id
-      }
       comments {
         nextToken
       }
       createdAt
-    }
-    nextToken
-  }
-}
-`;
-export const getProductList = `query GetProductList($id: ID!) {
-  getProductList(id: $id) {
-    id
-    products {
-      items {
-        id
-        title
-        condition
-        description
-        district
-        category
-        quantity
-        price
-        shipped
-        owner
-        createdAt
-      }
-      nextToken
-    }
-  }
-}
-`;
-export const listProductLists = `query ListProductLists(
-  $filter: ModelProductListFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listProductLists(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      products {
-        nextToken
-      }
+      queryName
     }
     nextToken
   }
@@ -273,11 +228,63 @@ export const getUser = `query GetUser($id: ID!) {
   }
 }
 `;
+export const productsByDate = `query ProductsByDate(
+  $queryName: String
+  $createdAt: ModelStringKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelProductFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  productsByDate(
+    queryName: $queryName
+    createdAt: $createdAt
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      title
+      condition
+      description
+      district
+      category
+      quantity
+      market {
+        id
+        name
+        banner
+        displayImage
+        description
+        category
+        owner
+        createdAt
+      }
+      files {
+        bucket
+        region
+        key
+      }
+      price
+      shipped
+      owner
+      comments {
+        nextToken
+      }
+      createdAt
+      queryName
+    }
+    nextToken
+  }
+}
+`;
 export const searchMarkets = `query SearchMarkets(
   $filter: SearchableMarketFilterInput
   $sort: SearchableMarketSortInput
   $limit: Int
-  $nextToken: Int
+  $nextToken: String
 ) {
   searchMarkets(
     filter: $filter
@@ -306,7 +313,7 @@ export const searchProducts = `query SearchProducts(
   $filter: SearchableProductFilterInput
   $sort: SearchableProductSortInput
   $limit: Int
-  $nextToken: Int
+  $nextToken: String
 ) {
   searchProducts(
     filter: $filter
@@ -340,13 +347,11 @@ export const searchProducts = `query SearchProducts(
       price
       shipped
       owner
-      productList {
-        id
-      }
       comments {
         nextToken
       }
       createdAt
+      queryName
     }
     nextToken
   }

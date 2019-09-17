@@ -1,9 +1,8 @@
 {
-    "identityPoolName": "vitrineb196df6f_identitypool_b196df6f",
+    "identityPoolName": "vitrinef373c24a_identitypool_f373c24a",
     "allowUnauthenticatedIdentities": true,
-    "openIdLambdaRoleName": "vitrinb196df6f_openid_lambda_role",
-    "resourceNameTruncated": "vitrinb196df6f",
-    "userPoolName": "vitrineb196df6f_userpool_b196df6f",
+    "resourceNameTruncated": "vitrinf373c24a",
+    "userPoolName": "vitrinef373c24a_userpool_f373c24a",
     "autoVerifiedAttributes": [
         "email"
     ],
@@ -21,7 +20,6 @@
     "requiredAttributes": [
         "email"
     ],
-    "userpoolClientName": "vitrinb196df6f_app_client",
     "userpoolClientGenerateSecret": true,
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [
@@ -30,17 +28,10 @@
     "userpoolClientReadAttributes": [
         "email"
     ],
-    "mfaLambdaRole": "vitrinb196df6f_totp_lambda_role",
-    "userpoolClientLambdaRole": "vitrinb196df6f_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "vitrinf373c24a_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "resourceName": "vitrineb196df6f",
+    "resourceName": "vitrinef373c24a",
     "authSelections": "identityPoolAndUserPool",
-    "authRoleName": {
-        "Ref": "AuthRoleName"
-    },
-    "unauthRoleName": {
-        "Ref": "UnauthRoleName"
-    },
     "authRoleArn": {
         "Fn::GetAtt": [
             "AuthRole",
@@ -54,6 +45,5 @@
         ]
     },
     "useDefault": "default",
-    "additionalQuestions": [],
     "dependsOn": []
 }

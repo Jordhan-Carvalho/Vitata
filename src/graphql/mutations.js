@@ -1,4 +1,4 @@
-// eslint-disable
+/* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
 export const createComment = `mutation CreateComment($input: CreateCommentInput!) {
@@ -32,13 +32,11 @@ export const createComment = `mutation CreateComment($input: CreateCommentInput!
       price
       shipped
       owner
-      productList {
-        id
-      }
       comments {
         nextToken
       }
       createdAt
+      queryName
     }
     createdAt
   }
@@ -75,13 +73,11 @@ export const updateComment = `mutation UpdateComment($input: UpdateCommentInput!
       price
       shipped
       owner
-      productList {
-        id
-      }
       comments {
         nextToken
       }
       createdAt
+      queryName
     }
     createdAt
   }
@@ -118,13 +114,11 @@ export const deleteComment = `mutation DeleteComment($input: DeleteCommentInput!
       price
       shipped
       owner
-      productList {
-        id
-      }
       comments {
         nextToken
       }
       createdAt
+      queryName
     }
     createdAt
   }
@@ -149,6 +143,7 @@ export const createMarket = `mutation CreateMarket($input: CreateMarketInput!) {
         shipped
         owner
         createdAt
+        queryName
       }
       nextToken
     }
@@ -178,6 +173,7 @@ export const updateMarket = `mutation UpdateMarket($input: UpdateMarketInput!) {
         shipped
         owner
         createdAt
+        queryName
       }
       nextToken
     }
@@ -207,6 +203,7 @@ export const deleteMarket = `mutation DeleteMarket($input: DeleteMarketInput!) {
         shipped
         owner
         createdAt
+        queryName
       }
       nextToken
     }
@@ -247,12 +244,6 @@ export const createProduct = `mutation CreateProduct($input: CreateProductInput!
     price
     shipped
     owner
-    productList {
-      id
-      products {
-        nextToken
-      }
-    }
     comments {
       items {
         id
@@ -263,6 +254,7 @@ export const createProduct = `mutation CreateProduct($input: CreateProductInput!
       nextToken
     }
     createdAt
+    queryName
   }
 }
 `;
@@ -296,12 +288,6 @@ export const updateProduct = `mutation UpdateProduct($input: UpdateProductInput!
     price
     shipped
     owner
-    productList {
-      id
-      products {
-        nextToken
-      }
-    }
     comments {
       items {
         id
@@ -312,6 +298,7 @@ export const updateProduct = `mutation UpdateProduct($input: UpdateProductInput!
       nextToken
     }
     createdAt
+    queryName
   }
 }
 `;
@@ -345,12 +332,6 @@ export const deleteProduct = `mutation DeleteProduct($input: DeleteProductInput!
     price
     shipped
     owner
-    productList {
-      id
-      products {
-        nextToken
-      }
-    }
     comments {
       items {
         id
@@ -361,72 +342,7 @@ export const deleteProduct = `mutation DeleteProduct($input: DeleteProductInput!
       nextToken
     }
     createdAt
-  }
-}
-`;
-export const createProductList = `mutation CreateProductList($input: CreateProductListInput!) {
-  createProductList(input: $input) {
-    id
-    products {
-      items {
-        id
-        title
-        condition
-        description
-        district
-        category
-        quantity
-        price
-        shipped
-        owner
-        createdAt
-      }
-      nextToken
-    }
-  }
-}
-`;
-export const updateProductList = `mutation UpdateProductList($input: UpdateProductListInput!) {
-  updateProductList(input: $input) {
-    id
-    products {
-      items {
-        id
-        title
-        condition
-        description
-        district
-        category
-        quantity
-        price
-        shipped
-        owner
-        createdAt
-      }
-      nextToken
-    }
-  }
-}
-`;
-export const deleteProductList = `mutation DeleteProductList($input: DeleteProductListInput!) {
-  deleteProductList(input: $input) {
-    id
-    products {
-      items {
-        id
-        title
-        condition
-        description
-        district
-        category
-        quantity
-        price
-        shipped
-        owner
-        createdAt
-      }
-      nextToken
-    }
+    queryName
   }
 }
 `;
@@ -493,13 +409,11 @@ export const createOrder = `mutation CreateOrder($input: CreateOrderInput!) {
       price
       shipped
       owner
-      productList {
-        id
-      }
       comments {
         nextToken
       }
       createdAt
+      queryName
     }
     user {
       id

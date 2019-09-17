@@ -1,4 +1,4 @@
-// eslint-disable
+/* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
 export const onCreateComment = `subscription OnCreateComment {
@@ -32,13 +32,11 @@ export const onCreateComment = `subscription OnCreateComment {
       price
       shipped
       owner
-      productList {
-        id
-      }
       comments {
         nextToken
       }
       createdAt
+      queryName
     }
     createdAt
   }
@@ -75,13 +73,11 @@ export const onUpdateComment = `subscription OnUpdateComment {
       price
       shipped
       owner
-      productList {
-        id
-      }
       comments {
         nextToken
       }
       createdAt
+      queryName
     }
     createdAt
   }
@@ -118,13 +114,11 @@ export const onDeleteComment = `subscription OnDeleteComment {
       price
       shipped
       owner
-      productList {
-        id
-      }
       comments {
         nextToken
       }
       createdAt
+      queryName
     }
     createdAt
   }
@@ -149,6 +143,7 @@ export const onCreateMarket = `subscription OnCreateMarket {
         shipped
         owner
         createdAt
+        queryName
       }
       nextToken
     }
@@ -178,6 +173,7 @@ export const onUpdateMarket = `subscription OnUpdateMarket {
         shipped
         owner
         createdAt
+        queryName
       }
       nextToken
     }
@@ -207,6 +203,7 @@ export const onDeleteMarket = `subscription OnDeleteMarket {
         shipped
         owner
         createdAt
+        queryName
       }
       nextToken
     }
@@ -217,8 +214,8 @@ export const onDeleteMarket = `subscription OnDeleteMarket {
   }
 }
 `;
-export const onCreateProduct = `subscription OnCreateProduct {
-  onCreateProduct {
+export const onCreateProduct = `subscription OnCreateProduct($owner: String!) {
+  onCreateProduct(owner: $owner) {
     id
     title
     condition
@@ -247,12 +244,6 @@ export const onCreateProduct = `subscription OnCreateProduct {
     price
     shipped
     owner
-    productList {
-      id
-      products {
-        nextToken
-      }
-    }
     comments {
       items {
         id
@@ -263,11 +254,12 @@ export const onCreateProduct = `subscription OnCreateProduct {
       nextToken
     }
     createdAt
+    queryName
   }
 }
 `;
-export const onUpdateProduct = `subscription OnUpdateProduct {
-  onUpdateProduct {
+export const onUpdateProduct = `subscription OnUpdateProduct($owner: String!) {
+  onUpdateProduct(owner: $owner) {
     id
     title
     condition
@@ -296,12 +288,6 @@ export const onUpdateProduct = `subscription OnUpdateProduct {
     price
     shipped
     owner
-    productList {
-      id
-      products {
-        nextToken
-      }
-    }
     comments {
       items {
         id
@@ -312,11 +298,12 @@ export const onUpdateProduct = `subscription OnUpdateProduct {
       nextToken
     }
     createdAt
+    queryName
   }
 }
 `;
-export const onDeleteProduct = `subscription OnDeleteProduct {
-  onDeleteProduct {
+export const onDeleteProduct = `subscription OnDeleteProduct($owner: String!) {
+  onDeleteProduct(owner: $owner) {
     id
     title
     condition
@@ -345,12 +332,6 @@ export const onDeleteProduct = `subscription OnDeleteProduct {
     price
     shipped
     owner
-    productList {
-      id
-      products {
-        nextToken
-      }
-    }
     comments {
       items {
         id
@@ -361,72 +342,7 @@ export const onDeleteProduct = `subscription OnDeleteProduct {
       nextToken
     }
     createdAt
-  }
-}
-`;
-export const onCreateProductList = `subscription OnCreateProductList {
-  onCreateProductList {
-    id
-    products {
-      items {
-        id
-        title
-        condition
-        description
-        district
-        category
-        quantity
-        price
-        shipped
-        owner
-        createdAt
-      }
-      nextToken
-    }
-  }
-}
-`;
-export const onUpdateProductList = `subscription OnUpdateProductList {
-  onUpdateProductList {
-    id
-    products {
-      items {
-        id
-        title
-        condition
-        description
-        district
-        category
-        quantity
-        price
-        shipped
-        owner
-        createdAt
-      }
-      nextToken
-    }
-  }
-}
-`;
-export const onDeleteProductList = `subscription OnDeleteProductList {
-  onDeleteProductList {
-    id
-    products {
-      items {
-        id
-        title
-        condition
-        description
-        district
-        category
-        quantity
-        price
-        shipped
-        owner
-        createdAt
-      }
-      nextToken
-    }
+    queryName
   }
 }
 `;

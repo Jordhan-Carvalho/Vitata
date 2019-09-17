@@ -1,9 +1,10 @@
 {
     "AppSyncApiName": "vitrine",
     "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": "false",
     "AuthCognitoUserPoolId": {
         "Fn::GetAtt": [
-            "authvitrineb196df6f",
+            "authvitrinef373c24a",
             "Outputs.UserPoolId"
         ]
     }

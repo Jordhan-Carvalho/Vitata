@@ -1,6 +1,6 @@
 {
 	"auth": {
-		"vitrineb196df6f": {
+		"vitrinef373c24a": {
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation",
 			"dependsOn": []
@@ -16,7 +16,7 @@
 		}
 	},
 	"storage": {
-		"s38a48f71c": {
+		"publicvitrineimages": {
 			"service": "S3",
 			"providerPlugin": "awscloudformation"
 		}
