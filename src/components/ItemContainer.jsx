@@ -5,10 +5,13 @@ import SingleProduct from "./SingleProduct";
 import { listMarkets } from "../graphql/queries";
 import SingleMarket from "./SingleMarket";
 
+//Apollo
+import { withApollo } from "react-apollo";
+
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 
-const ItemContainer = ({ type }) => {
+const ItemContainer = ({ type, client }) => {
   const [products, setProducts] = useState(null);
   const [markets, setMarkets] = useState(null);
   const [nextToken, setNextToken] = useState(null);
@@ -17,19 +20,31 @@ const ItemContainer = ({ type }) => {
   useEffect(() => {
     getProducts();
     getMarkets();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getProducts = async () => {
-    const { data } = await API.graphql(
-      graphqlOperation(listProducts, { limit: 8 })
-    );
+    const { data, loading } = await client.query({
+      query: listProducts,
+      variables: {
+        limit: 8
+      }
+      // fetchPolicy: "network-only"
+    });
+
+    // const { data } = await API.graphql(
+    //   graphqlOperation(listProducts, { limit: 8 })
+    // );
     console.log(data);
     setNextToken(data.listProducts.nextToken);
     setProducts(data.listProducts.items);
   };
 
   const getMarkets = async () => {
-    const { data } = await API.graphql(graphqlOperation(listMarkets));
+    const { data, loading } = await client.query({
+      query: listMarkets
+    });
+    // const { data } = await API.graphql(graphqlOperation(listMarkets));
     console.log(data);
     setMarkets(data.listMarkets.items);
   };
@@ -81,4 +96,4 @@ const ItemContainer = ({ type }) => {
   );
 };
 
-export default ItemContainer;
+export default withApollo(ItemContainer);

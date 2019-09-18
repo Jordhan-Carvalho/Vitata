@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { API, graphqlOperation } from "aws-amplify";
+// import { API, graphqlOperation } from "aws-amplify";
+//Apollo
+import { withApollo } from "react-apollo";
+
 import Carousel from "../components/Carousel";
 import { getProduct } from "../graphql/queries";
 import Spinner from "../components/Spinner";
@@ -39,7 +42,8 @@ const ProductPage = ({
   match: {
     params: { id }
   },
-  user
+  user,
+  client
 }) => {
   const [product, setProduct] = useState(null);
   const classes = useStyles();
@@ -51,10 +55,20 @@ const ProductPage = ({
 
   const fetchProduct = async () => {
     try {
-      const { data } = await API.graphql(graphqlOperation(getProduct, { id }));
+      const { data, loading } = await client.query({
+        query: getProduct,
+        variables: {
+          id
+        }
+      });
 
       setProduct(data.getProduct);
-    } catch (error) {}
+      // const { data } = await API.graphql(graphqlOperation(getProduct, { id }));
+
+      // setProduct(data.getProduct);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return product ? (
@@ -155,4 +169,4 @@ const ProductPage = ({
   );
 };
 
-export default ProductPage;
+export default withApollo(ProductPage);
