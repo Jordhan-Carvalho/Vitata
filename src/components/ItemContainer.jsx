@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { API, graphqlOperation } from "aws-amplify";
-import { listProducts } from "../graphql/queries";
+import { productsByDate } from "../graphql/queries";
 import SingleProduct from "./SingleProduct";
 import { listMarkets } from "../graphql/queries";
 import SingleMarket from "./SingleMarket";
+import Spinner from "./Spinner";
 
 //Apollo
 import { withApollo } from "react-apollo";
@@ -25,9 +26,11 @@ const ItemContainer = ({ type, client }) => {
 
   const getProducts = async () => {
     const { data, loading } = await client.query({
-      query: listProducts,
+      query: productsByDate,
       variables: {
-        limit: 8
+        queryName: "Product",
+        sortDirection: "DESC",
+        limit: 4
       }
       // fetchPolicy: "network-only"
     });
@@ -35,9 +38,8 @@ const ItemContainer = ({ type, client }) => {
     // const { data } = await API.graphql(
     //   graphqlOperation(listProducts, { limit: 8 })
     // );
-    console.log(data);
-    setNextToken(data.listProducts.nextToken);
-    setProducts(data.listProducts.items);
+    setNextToken(data.productsByDate.nextToken);
+    setProducts(data.productsByDate.items);
   };
 
   const getMarkets = async () => {
@@ -45,19 +47,25 @@ const ItemContainer = ({ type, client }) => {
       query: listMarkets
     });
     // const { data } = await API.graphql(graphqlOperation(listMarkets));
-    console.log(data);
     setMarkets(data.listMarkets.items);
   };
 
   const fetchMoreProducts = async () => {
     const { data } = await API.graphql(
-      graphqlOperation(listProducts, { limit: 4, nextToken })
+      graphqlOperation(productsByDate, {
+        queryName: "Product",
+        sortDirection: "DESC",
+        limit: 4,
+        nextToken
+      })
     );
-    if (data.listProducts.nextToken === null) {
-      setDisabled(true);
+    if (data.productsByDate.nextToken === null) {
+      setNextToken(data.productsByDate.nextToken);
+      setProducts([...products, ...data.productsByDate.items]);
+      return setDisabled(true);
     }
-    setNextToken(data.listProducts.nextToken);
-    setProducts([...products, ...data.listProducts.items]);
+    setNextToken(data.productsByDate.nextToken);
+    setProducts([...products, ...data.productsByDate.items]);
   };
 
   const renderItems = () => {
@@ -76,23 +84,23 @@ const ItemContainer = ({ type, client }) => {
     }
   };
 
-  return (
-    products && (
-      <Grid container spacing={1}>
-        {renderItems()}
-        <Grid item xs={12}>
-          <Button
-            disabled={disabled}
-            onClick={fetchMoreProducts}
-            variant="contained"
-            size="large"
-            color="primary"
-          >
-            Carregar mais...
-          </Button>
-        </Grid>
+  return products ? (
+    <Grid container spacing={1}>
+      {renderItems()}
+      <Grid item xs={12}>
+        <Button
+          disabled={disabled}
+          onClick={fetchMoreProducts}
+          variant="contained"
+          size="large"
+          color="primary"
+        >
+          Carregar mais...
+        </Button>
       </Grid>
-    )
+    </Grid>
+  ) : (
+    <Spinner />
   );
 };
 

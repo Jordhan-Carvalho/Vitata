@@ -67,7 +67,7 @@ const initialState = {
   isUploading: false
 };
 
-const CreateProduct = ({ user }) => {
+const CreateProduct = ({ user, history }) => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const [formData, setFormData] = useState({ ...initialState });
@@ -132,9 +132,11 @@ const CreateProduct = ({ user }) => {
         files: filesForUpload
       };
 
-      const res = await API.graphql(graphqlOperation(createProduct, { input }));
-      console.log(res);
+      const { data } = await API.graphql(
+        graphqlOperation(createProduct, { input })
+      );
       toast.success("😄 Produto criado com sucesso!", { autoClose: 2000 });
+      history.push(`/produto/${data.createProduct.id}`);
     } catch (error) {
       console.log(error);
       toast.error(`${error.message}`, { autoClose: 2000 });

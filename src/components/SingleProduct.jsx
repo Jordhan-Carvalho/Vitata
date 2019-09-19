@@ -29,53 +29,47 @@ const useStyles = makeStyles(theme => ({
 const SingleProduct = ({ product }) => {
   const classes = useStyles();
 
-  const imageUrl = `https://${product.files[0].bucket}.s3.${
-    product.files[0].region
-  }.amazonaws.com/public/${product.files[0].key}`;
+  const imageUrl = `https://${product.files[0].bucket}.s3.${product.files[0].region}.amazonaws.com/public/${product.files[0].key}`;
 
   return (
-    <Card className={classes.card}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          alt="Foto do produto"
-          height="140"
-          image={imageUrl}
-          title="Foto do produto"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {product.title}
-          </Typography>
-          <div>
+    <Link to={`/produto/${product.id}`}>
+      <Card className={classes.card}>
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            alt="Foto do produto"
+            height="140"
+            image={imageUrl}
+            title="Foto do produto"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {product.title}
+            </Typography>
+            <div>
+              <Chip
+                color="primary"
+                avatar={<Avatar>R$</Avatar>}
+                label={product.price}
+                className={classes.chip}
+              />
+            </div>
             <Chip
               color="primary"
-              avatar={<Avatar>R$</Avatar>}
-              label={product.price}
+              icon={<NewReleases />}
+              label={product.condition}
               className={classes.chip}
             />
-          </div>
-          <Chip
-            color="primary"
-            icon={<NewReleases />}
-            label={product.condition}
-            className={classes.chip}
-          />
-          <Chip
-            color="primary"
-            icon={<LocalShipping />}
-            label={product.shipped}
-            className={classes.chip}
-          />
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Divider />
-        <Button size="small" color="primary">
-          <Link to={`/produto/${product.id}`}> Mais informações </Link>
-        </Button>
-      </CardActions>
-    </Card>
+            <Chip
+              color="primary"
+              icon={<LocalShipping />}
+              label={product.shipped}
+              className={classes.chip}
+            />
+          </CardContent>
+        </CardActionArea>
+      </Card>
+    </Link>
   );
 };
 

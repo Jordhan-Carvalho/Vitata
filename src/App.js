@@ -134,12 +134,16 @@ function App() {
           <Route
             exact
             path="/novo"
-            component={props => <CreateProduct {...props} user={user} />}
+            component={props => (
+              <CreateProduct {...props} user={user} history={history} />
+            )}
           />
           <Route
             exact
             path="/novo/market"
-            component={props => <CreateMarket {...props} user={user} />}
+            component={props => (
+              <CreateMarket {...props} user={user} history={history} />
+            )}
           />
           <Route
             exact

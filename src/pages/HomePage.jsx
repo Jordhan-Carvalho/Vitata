@@ -26,15 +26,13 @@ const HomePage = () => {
       <BottomNavigation
         value={value}
         onChange={(event, newValue) => {
-          console.log(event);
-          console.log(newValue);
           setValue(newValue);
         }}
         showLabels
         className={classes.root}
       >
-        <BottomNavigationAction label="Products" icon={<LocalOffer />} />
-        <BottomNavigationAction label="Markets" icon={<Store />} />
+        <BottomNavigationAction label="Produtos" icon={<LocalOffer />} />
+        <BottomNavigationAction label="Lojas" icon={<Store />} />
       </BottomNavigation>
     );
   };

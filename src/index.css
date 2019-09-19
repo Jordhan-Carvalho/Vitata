@@ -49,6 +49,11 @@ code {
   }
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 /* Carousel */
 .carousel-main-img {
   width: 200px;
